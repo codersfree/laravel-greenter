@@ -298,7 +298,7 @@ $html = GreenterReport::generateHtml($response->getDocument());
 
 ### 🖨️ PDF
 
-Requiere tener [wkhtmltopdf](https://wkhtmltopdf.org) instalado. Configura la ruta:
+Requiere tener [wkhtmltopdf](https://wkhtmltopdf.org) instalado. Configura la ruta donde se instalo en `config/greenter.php`:
 
 ```php
 'report' => [
