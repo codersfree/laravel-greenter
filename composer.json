@@ -1,0 +1,65 @@
+{
+    "name": "codersfree/laravel-greenter",
+    "description": "Laravel package for Greenter",
+    "type": "laravel-package",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "greenter",
+        "facturacion",
+        "sunat",
+        "pdf",
+        "boletas",
+        "facturas"
+    ],
+    "homepage": "https://github.com/codersfree/laravel-greenter",
+    "support": {
+        "issues": "https://github.com/codersfree/laravel-greenter/issues",
+        "source": "https://github.com/codersfree/laravel-greenter"
+    },
+    "authors": [
+        {
+            "name": "CodersFree",
+            "email": "victor@codersfree.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.2",
+        "codersfree/report": "^1.0",
+        "greenter/htmltopdf": "^5.1",
+        "greenter/lite": "^5.1",
+        "illuminate/console": "^11.0|^12.0",
+        "illuminate/contracts": "^11.0|^12.0",
+        "illuminate/filesystem": "^11.0|^12.0",
+        "illuminate/support": "^11.0|^12.0",
+        "illuminate/view": "^11.0|^12.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0"
+    },
+    "suggest": {
+        "laravel/telescope": "Recomendado para depuración durante el desarrollo"
+    },
+    "autoload": {
+        "psr-4": {
+            "CodersFree\\LaravelGreenter\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "CodersFree\\LaravelGreenter\\GreenterServiceProvider"
+            ],
+            "aliases": {
+                "Greenter": "CodersFree\\LaravelGreenter\\Facades\\Greenter",
+                "GreenterDespatch": "CodersFree\\LaravelGreenter\\Facades\\GreenterDespatch",
+                "GreenterReport": "CodersFree\\LaravelGreenter\\Facades\\GreenterReport"
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
