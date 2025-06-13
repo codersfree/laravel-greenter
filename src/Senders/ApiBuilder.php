@@ -4,7 +4,7 @@ namespace CodersFree\LaravelGreenter\Senders;
 
 use Greenter\Api;
 
-class ApiBuilder
+class ApiBuilder implements SenderInterface
 {
     public function build(): Api
     {

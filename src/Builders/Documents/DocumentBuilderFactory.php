@@ -1,6 +1,6 @@
 <?php
 
-namespace CodersFree\LaravelGreenter\Builders\See;
+namespace CodersFree\LaravelGreenter\Builders\Documents;
 
 use CodersFree\LaravelGreenter\Exceptions\GreenterException;
 
@@ -9,10 +9,13 @@ class DocumentBuilderFactory
     public static function create(string $type): DocumentBuilderInterface
     {
         return match ($type) {
+            'despatch' => new DespatchBuilder(),
             'invoice' => new InvoiceBuilder(),
             'note' => new NoteBuilder(),
             'perception' => new PerceptionBuilder(),
             'retention' => new RetentionBuilder(),
+            'summary' => new SummaryBuilder(),
+            'voided' => new VoidedBuilder(),
             default => throw new GreenterException("Tipo de documento no soportado"),
         };
     }

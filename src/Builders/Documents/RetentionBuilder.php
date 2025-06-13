@@ -1,6 +1,6 @@
 <?php
 
-namespace CodersFree\LaravelGreenter\Builders\See;
+namespace CodersFree\LaravelGreenter\Builders\Documents;
 
 use CodersFree\LaravelGreenter\Builders\ClientBuilder;
 use CodersFree\LaravelGreenter\Builders\CompanyBuilder;

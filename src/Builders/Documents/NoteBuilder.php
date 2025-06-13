@@ -1,31 +1,24 @@
 <?php
 
-namespace CodersFree\LaravelGreenter\Builders\See;
+namespace CodersFree\LaravelGreenter\Builders\Documents;
 
-use CodersFree\LaravelGreenter\Builders\AddressBuilder;
-use CodersFree\LaravelGreenter\Builders\ChargeBuilder;
 use CodersFree\LaravelGreenter\Builders\ClientBuilder;
 use CodersFree\LaravelGreenter\Builders\CompanyBuilder;
 use CodersFree\LaravelGreenter\Builders\CuotaBuilder;
-use CodersFree\LaravelGreenter\Builders\DetractionBuilder;
 use CodersFree\LaravelGreenter\Builders\DocumentBuilder;
-use CodersFree\LaravelGreenter\Builders\EmbededDespatchBuilder;
 use CodersFree\LaravelGreenter\Builders\LegendBuilder;
 use CodersFree\LaravelGreenter\Builders\PaymentTermsBuilder;
-use CodersFree\LaravelGreenter\Builders\PrepaymentBuilder;
 use CodersFree\LaravelGreenter\Builders\SaleDetailBuilder;
 use CodersFree\LaravelGreenter\Builders\SalePerceptionBuilder;
-use DateTime;
 use Greenter\Model\Sale\FormaPagos\FormaPagoContado;
-use Greenter\Model\Sale\Invoice;
+use Greenter\Model\Sale\Note;
 
-class InvoiceBuilder implements DocumentBuilderInterface
+class NoteBuilder implements DocumentBuilderInterface
 {
-    public function build(array $data): Invoice
+    public function build(array $data): Note
     {
-        // Venta
-        return (new Invoice())
-
+        return (new Note())
+            //Base Sale
             ->setUblVersion($data['ublVersion'] ?? '2.1')
             ->setTipoDoc($data['tipoDoc'] ?? null)
             ->setSerie($data['serie'] ?? null)
@@ -59,7 +52,6 @@ class InvoiceBuilder implements DocumentBuilderInterface
             ->setMtoBaseOth($data['mtoBaseOth'] ?? null)
             ->setMtoOtrosTributos($data['mtoOtrosTributos'] ?? null)
             ->setIcbper($data['icbper'] ?? null)
-
             ->setTotalImpuestos($data['totalImpuestos'] ?? null)
             ->setRedondeo($data['redondeo'] ?? null)
             ->setMtoImpVenta($data['mtoImpVenta'] ?? null)
@@ -99,62 +91,18 @@ class InvoiceBuilder implements DocumentBuilderInterface
                     $data['cuotas'] ?? []
                 )
             )
-            ->setTipoOperacion($data['tipoOperacion'] ?? null)
-            ->setFecVencimiento(
-                isset($data['fecVencimiento'])
-                    ? new DateTime($data['fecVencimiento'])
-                    : null
-            )
-            ->setSumDsctoGlobal($data['sumDsctoGlobal'] ?? null)
-            ->setMtoDescuentos($data['mtoDescuentos'] ?? null)
-            ->setSumOtrosDescuentos($data['sumOtrosDescuentos'] ?? null)
-            ->setDescuentos(
-                array_map(
-                    fn($descuento) => (new ChargeBuilder())->build($descuento),
-                    $data['descuentos'] ?? []
-                )
-            )
-            ->setCargos(
-                array_map(
-                    fn($cargo) => (new ChargeBuilder())->build($cargo),
-                    $data['cargos'] ?? []
-                )
-            )
-            ->setMtoCargos($data['mtoCargos'] ?? null)
-            ->setTotalAnticipos($data['totalAnticipos'] ?? null)
+
+            //Nota de venta
+            ->setCodMotivo($data['codMotivo'] ?? null)
+            ->setDesMotivo($data['desMotivo'] ?? null)
+            ->setTipDocAfectado($data['tipDocAfectado'] ?? null)
+            ->setNumDocfectado($data['numDocfectado'] ?? null)
             ->setPerception(
-                isset($data['perception'])
-                    ? (new SalePerceptionBuilder())->build($data['perception'])
-                    : null
-            )
-            ->setGuiaEmbebida(
-                isset($data['guiaEmbebida'])
-                    ? (new EmbededDespatchBuilder())->build($data['guiaEmbebida'])
-                    : null
-            )
-            ->setAnticipos(
-                array_map(
-                    fn($anticipo) => (new PrepaymentBuilder())->build($anticipo),
-                    $data['anticipos'] ?? []
-                )
-            )
-            ->setDetraccion(
-                isset($data['detraccion'])
-                    ? (new DetractionBuilder())->build($data['detraccion'])
-                    : null
-            )
-            ->setSeller(
-                isset($data['seller'])
-                    ? (new ClientBuilder())->build($data['seller'])
+                isset($data['perception']) 
+                    ? (new SalePerceptionBuilder())->build($data['perception']) 
                     : null
             )
             ->setValorVenta($data['valorVenta'] ?? null)
-            ->setSubTotal($data['subTotal'] ?? null)
-            ->setObservacion($data['observacion'] ?? null)
-            ->setDireccionEntrega(
-                isset($data['direccionEntrega'])
-                    ? (new AddressBuilder())->build($data['direccionEntrega'])
-                    : null
-            );;
+            ->setSubTotal($data['subTotal'] ?? null);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace CodersFree\LaravelGreenter\Builders\Api;
+namespace CodersFree\LaravelGreenter\Builders\Documents;
 
 use CodersFree\LaravelGreenter\Builders\AdditionalDocBuilder;
 use CodersFree\LaravelGreenter\Builders\ClientBuilder;

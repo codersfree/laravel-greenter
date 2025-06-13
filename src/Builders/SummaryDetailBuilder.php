@@ -11,7 +11,7 @@ class SummaryDetailBuilder
         return (new SummaryDetail())
             ->setTipoDoc($data['tipoDoc'] ?? null)
             ->setSerieNro($data['serieNro'] ?? null)
-            ->setClienteNro($data['clienteNro'] ?? null)
+            ->setClienteTipo($data['clienteTipo'] ?? null)
             ->setClienteNro($data['clienteNro'] ?? null)
             ->setDocReferencia(
                 isset($data['docReferencia'])

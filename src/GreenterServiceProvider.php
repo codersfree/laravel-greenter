@@ -3,10 +3,9 @@
 namespace CodersFree\LaravelGreenter;
 
 use CodersFree\LaravelGreenter\Senders\ApiBuilder;
-use CodersFree\LaravelGreenter\Senders\SeeBuilder;
 use CodersFree\LaravelGreenter\Services\ApiSender;
 use CodersFree\LaravelGreenter\Services\ReportService;
-use CodersFree\LaravelGreenter\Services\SeeSender as ServicesSeeSender;
+use CodersFree\LaravelGreenter\Services\SenderService;
 use Illuminate\Support\ServiceProvider;
 
 class GreenterServiceProvider extends ServiceProvider
@@ -16,13 +15,7 @@ class GreenterServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/greenter.php', 'greenter');
 
         $this->app->singleton('greenter', function ($app) {
-            $seeBuilder = new SeeBuilder();
-            return new ServicesSeeSender($seeBuilder);
-        });
-
-        $this->app->singleton('greenter.api', function ($app) {
-            $apiBuilder = new ApiBuilder();
-            return new ApiSender($apiBuilder);
+            return new SenderService();
         });
 
         $this->app->singleton('greenter.report', function ($app) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace CodersFree\LaravelGreenter\Builders\Api;
+namespace CodersFree\LaravelGreenter\Builders\Documents;
 
 use Greenter\Model\DocumentInterface;
 
