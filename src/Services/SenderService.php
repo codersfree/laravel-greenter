@@ -8,11 +8,19 @@ use CodersFree\LaravelGreenter\Models\SunatResponse;
 use CodersFree\LaravelGreenter\Senders\SenderFactory;
 use Greenter\Model\Response\SummaryResult;
 
-class SenderService extends BaseSender
+class SenderService
 {
-    /* public function __construct(
-        protected SeeBuilder $seeBuilder,
-    ) {} */
+    public function setCompany(array $company): self
+    {
+        $defaultCompany = config('greenter.company');
+        $customCompany = array_replace_recursive($defaultCompany, $company);
+
+        config([
+            'greenter.company' => $customCompany
+        ]);
+
+        return $this;
+    }
 
     public function send(string $type, array $data): SunatResponse
     {

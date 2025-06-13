@@ -44,7 +44,7 @@ class ApiBuilder implements SenderInterface
                 : 'MODDATOS'
         );
 
-        $api->setCertificate(file_get_contents($company['certificate']));
+        $api->setCertificate($company['certificate']);
 
         return $api;
     }

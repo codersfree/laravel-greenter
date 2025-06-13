@@ -192,7 +192,7 @@ $data = [ ... ]; // Datos del comprobante
 $response = Greenter::setCompany([
     'ruc' => '20999999999',
     'razonSocial' => 'Otra Empresa SAC',
-    'certificate' => public_path('certs/otro_cert.pem'),
+    'certificate' => file_get_contents(public_path('certs/otro_cert.pem')),
     // Otros datos...
 ])->send('invoice', $data);
 ```
