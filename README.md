@@ -13,19 +13,16 @@
 * [📦 Requisitos](#-requisitos)
 * [🚀 Instalación](#-instalación)
 * [⚙️ Configuración Inicial](#️-configuración-inicial)
-
   * [🏢 Datos de la Empresa Emisora](#-datos-de-la-empresa-emisora)
   * [🛠️ Cambiar a Producción](#️-cambiar-a-producción)
 * [🧰 Uso Básico](#-uso-básico)
-
   * [🧾 Emisión de Comprobante Electrónico](#-emisión-de-comprobante-electrónico)
   * [🔁 Emisión Dinámica para Múltiples Empresas](#-emisión-dinámica-para-múltiples-empresas)
+* [📦 Otros Tipos de Comprobantes](#-otros-tipos-de-comprobantes)
 * [🎨 Generar Representación Impresa](#-generar-representación-impresa)
-
   * [🧾 HTML](#-html)
   * [🖨️ PDF](#️-pdf)
   * [🎨 Personalizar Plantillas](#-personalizar-plantillas)
-* [📦 Otros Tipos de Comprobantes](#-otros-tipos-de-comprobantes)
 * [🧪 Facades Disponibles](#-facades-disponibles)
 * [🧱 Estructura del Paquete](#-estructura-del-paquete)
 * [🔐 Seguridad Recomendada](#-seguridad-recomendada)
@@ -200,6 +197,24 @@ $response = Greenter::setCompany([
 ])->send('invoice', $data);
 ```
 
+## 📦 Otros Tipos de Comprobantes
+
+Además de facturas, puedes emitir:
+
+| Tipo de Comprobante | Código       | Descripción                     |
+|---------------------|--------------|---------------------------------|
+| Factura             | `invoice`    | Factura electrónica (01)        |
+| Boleta              | `invoice`    | Boleta de venta (03)            |
+| Nota de Crédito     | `note`       | Nota de crédito electrónica (07)|
+| Nota de Débito      | `note`       | Nota de débito electrónica (08) |
+| Guía de Remisión    | `despatch`   | Guía de remisión electrónica    |
+| Resumen Diario      | `summary`    | Resumen diario de boletas (RC)  |
+| Comunicación de Baja| `voided`     | Comunicación de baja (RA)       |
+| Retención           | `retention`  | Comprobante de retención        |
+| Percepción          | `perception` | Comprobante de percepción       |
+
+Consulta la [documentación de Greenter](https://github.com/thegreenter/greenter) para ver los campos específicos de cada uno.
+
 ## 🎨 Generar Representación Impresa
 
 ### 🧾 HTML
@@ -279,17 +294,6 @@ Puedes personalizar y cambiar la ruta:
     'template' => resource_path('templates/laravel-greenter'),
 ],
 ```
-
-## 📦 Otros Tipos de Comprobantes
-
-Además de facturas, puedes emitir:
-
-* Boletas
-* Notas de crédito / débito
-* Guías de remisión
-* Retenciones / Percepciones
-
-Consulta la [documentación de Greenter](https://github.com/thegreenter/greenter) para ver los campos específicos de cada uno.
 
 ## 🧪 Facades Disponibles
 
