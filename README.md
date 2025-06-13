@@ -86,7 +86,7 @@ Cuando estés listo para pasar a producción, edita el archivo `config/greenter.
 'mode' => 'prod',
 
 'company' => [
-    'certificate' => public_path('certs/certificate.pem'),
+    'certificate' => file_get_contents(public_path('certs/certificate.pem')),
     'clave_sol' => [
         'user' => 'USUARIO_SOL',
         'password' => 'CLAVE_SOL',
