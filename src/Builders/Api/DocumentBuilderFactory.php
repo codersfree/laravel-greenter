@@ -11,6 +11,7 @@ class DocumentBuilderFactory
         return match ($type) {
             'despatch' => new DespatchBuilder(),
             'summary' => new SummaryBuilder(),
+            'voided' => new VoidedBuilder(),
             default => throw new GreenterException("Tipo de documento no soportado"),
         };
     }

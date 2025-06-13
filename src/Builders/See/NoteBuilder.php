@@ -26,7 +26,7 @@ class NoteBuilder implements DocumentBuilderInterface
             ->setFechaEmision(
                 isset($data['fechaEmision'])
                     ? new \DateTime($data['fechaEmision'])
-                    : new \DateTime()
+                    : null
             )
             ->setCompany(
                 (new CompanyBuilder())->build()
@@ -56,35 +56,40 @@ class NoteBuilder implements DocumentBuilderInterface
             ->setRedondeo($data['redondeo'] ?? null)
             ->setMtoImpVenta($data['mtoImpVenta'] ?? null)
             ->setDetails(
-                array_map(function ($detail) {
-                    return (new SaleDetailBuilder())->build($detail);
-                }, $data['details'] ?? [])
+                array_map(
+                    fn($detail) => (new SaleDetailBuilder())->build($detail),
+                    $data['details'] ?? []
+                )
             )
             ->setLegends(
-                array_map(function ($legend) {
-                    return (new LegendBuilder())->build($legend);
-                }, $data['legends'] ?? [])
+                array_map(
+                    fn($legend) => (new LegendBuilder())->build($legend),
+                    $data['legends'] ?? []
+                )
             )
             ->setGuias(
-                array_map(function ($guia) {
-                    return (new DocumentBuilder())->build($guia);
-                }, $data['guias'] ?? [])
+                array_map(
+                    fn($guia) => (new DocumentBuilder())->build($guia),
+                    $data['guias'] ?? []
+                )
             )
             ->setRelDocs(
-                array_map(function ($relDoc) {
-                    return (new DocumentBuilder())->build($relDoc);
-                }, $data['relDocs'] ?? [])
+                array_map(
+                    fn($relDoc) => (new DocumentBuilder())->build($relDoc),
+                    $data['relDocs'] ?? []
+                )
             )
             ->setCompra($data['compra'] ?? null)
             ->setFormaPago(
                 isset($data['formaPago'])
                     ? (new PaymentTermsBuilder())->build($data['formaPago'])
-                    : new FormaPagoContado()
+                    : null
             )
             ->setCuotas(
-                array_map(function ($cuota) {
-                    return (new CuotaBuilder())->build($cuota);
-                }, $data['cuotas'] ?? [])
+                array_map(
+                    fn($cuota) => (new CuotaBuilder())->build($cuota),
+                    $data['cuotas'] ?? []
+                )
             )
 
             //Nota de venta

@@ -32,9 +32,13 @@ return [
     ],
 
     'endpoints' => [
-        'see' => [
+        'fe' => [
             'beta' => SunatEndpoints::FE_BETA,
             'prod' => SunatEndpoints::FE_PRODUCCION,
+        ],
+        'retencion' => [
+            'beta' => SunatEndpoints::RETENCION_BETA,
+            'prod' => SunatEndpoints::RETENCION_PRODUCCION,
         ],
         'api' => [
             'beta' => [

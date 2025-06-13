@@ -15,12 +15,12 @@ class SummaryBuilder implements DocumentBuilderInterface
             ->setFecGeneracion(
                 isset($data['fecGeneracion'])
                     ? new \DateTime($data['fecGeneracion'])
-                    : new \DateTime()
+                    : null
             )
             ->setFecResumen(
                 isset($data['fecResumen'])
                     ? new \DateTime($data['fecResumen'])
-                    : new \DateTime()
+                    : null
             )
             ->setMoneda($data['moneda'] ?? 'PEN')
             ->setCompany(
@@ -28,9 +28,7 @@ class SummaryBuilder implements DocumentBuilderInterface
             )
             ->setDetails(
                 array_map(
-                    function ($detail) {
-                        return (new SummaryDetailBuilder())->build($detail);
-                    },
+                    fn($detail) => (new SummaryDetailBuilder())->build($detail),
                     $data['details'] ?? []
                 )
             );

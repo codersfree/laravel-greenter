@@ -19,7 +19,7 @@ class SeeSender extends BaseSender
             $builder = DocumentBuilderFactory::create($type);
             $document = $builder->build($data);
             
-            $see = $this->seeBuilder->build();
+            $see = $this->seeBuilder->build($type);
             $result = $see->send($document);
             
             if (!$result->isSuccess()) {

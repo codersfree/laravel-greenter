@@ -33,7 +33,7 @@ class InvoiceBuilder implements DocumentBuilderInterface
             ->setFechaEmision(
                 isset($data['fechaEmision'])
                     ? new \DateTime($data['fechaEmision'])
-                    : new \DateTime()
+                    : null
             )
             ->setCompany(
                 (new CompanyBuilder())->build()
@@ -64,35 +64,40 @@ class InvoiceBuilder implements DocumentBuilderInterface
             ->setRedondeo($data['redondeo'] ?? null)
             ->setMtoImpVenta($data['mtoImpVenta'] ?? null)
             ->setDetails(
-                array_map(function ($detail) {
-                    return (new SaleDetailBuilder())->build($detail);
-                }, $data['details'] ?? [])
+                array_map(
+                    fn($detail) => (new SaleDetailBuilder())->build($detail),
+                    $data['details'] ?? []
+                )
             )
             ->setLegends(
-                array_map(function ($legend) {
-                    return (new LegendBuilder())->build($legend);
-                }, $data['legends'] ?? [])
+                array_map(
+                    fn($legend) => (new LegendBuilder())->build($legend),
+                    $data['legends'] ?? []
+                )
             )
             ->setGuias(
-                array_map(function ($guia) {
-                    return (new DocumentBuilder())->build($guia);
-                }, $data['guias'] ?? [])
+                array_map(
+                    fn($guia) => (new DocumentBuilder())->build($guia),
+                    $data['guias'] ?? []
+                )
             )
             ->setRelDocs(
-                array_map(function ($relDoc) {
-                    return (new DocumentBuilder())->build($relDoc);
-                }, $data['relDocs'] ?? [])
+                array_map(
+                    fn($relDoc) => (new DocumentBuilder())->build($relDoc),
+                    $data['relDocs'] ?? []
+                )
             )
             ->setCompra($data['compra'] ?? null)
             ->setFormaPago(
                 isset($data['formaPago'])
                     ? (new PaymentTermsBuilder())->build($data['formaPago'])
-                    : new FormaPagoContado()
+                    : null
             )
             ->setCuotas(
-                array_map(function ($cuota) {
-                    return (new CuotaBuilder())->build($cuota);
-                }, $data['cuotas'] ?? [])
+                array_map(
+                    fn($cuota) => (new CuotaBuilder())->build($cuota),
+                    $data['cuotas'] ?? []
+                )
             )
             ->setTipoOperacion($data['tipoOperacion'] ?? null)
             ->setFecVencimiento(
@@ -104,14 +109,16 @@ class InvoiceBuilder implements DocumentBuilderInterface
             ->setMtoDescuentos($data['mtoDescuentos'] ?? null)
             ->setSumOtrosDescuentos($data['sumOtrosDescuentos'] ?? null)
             ->setDescuentos(
-                array_map(function ($descuento) {
-                    return (new ChargeBuilder())->build($descuento);
-                }, $data['descuentos'] ?? [])
+                array_map(
+                    fn($descuento) => (new ChargeBuilder())->build($descuento),
+                    $data['descuentos'] ?? []
+                )
             )
             ->setCargos(
-                array_map(function ($cargo) {
-                    return (new ChargeBuilder())->build($cargo);
-                }, $data['cargos'] ?? [])
+                array_map(
+                    fn($cargo) => (new ChargeBuilder())->build($cargo),
+                    $data['cargos'] ?? []
+                )
             )
             ->setMtoCargos($data['mtoCargos'] ?? null)
             ->setTotalAnticipos($data['totalAnticipos'] ?? null)
@@ -126,9 +133,10 @@ class InvoiceBuilder implements DocumentBuilderInterface
                     : null
             )
             ->setAnticipos(
-                array_map(function ($anticipo) {
-                    return (new PrepaymentBuilder())->build($anticipo);
-                }, $data['anticipos'] ?? [])
+                array_map(
+                    fn($anticipo) => (new PrepaymentBuilder())->build($anticipo),
+                    $data['anticipos'] ?? []
+                )
             )
             ->setDetraccion(
                 isset($data['detraccion'])

@@ -12,8 +12,20 @@ class ReportService
 {
     public function setParams(array $params): self
     {
-        $params = array_replace_recursive(config('greenter.report.params'), $params);
-        config(['greenter.report.params' => $params]);
+        $dafultParams = config('greenter.report.params');
+        $customParams = array_replace_recursive($dafultParams, $params);
+
+        config(['greenter.report.params' => $customParams]);
+
+        return $this;
+    }
+
+    public function setOptions(array $options): self
+    {
+        $defaultOptions = config('greenter.report.options');
+        $customOptions = array_replace_recursive($defaultOptions, $options);
+
+        config(['greenter.report.options' => $customOptions]);
 
         return $this;
     }

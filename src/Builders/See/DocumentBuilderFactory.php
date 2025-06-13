@@ -12,6 +12,7 @@ class DocumentBuilderFactory
             'invoice' => new InvoiceBuilder(),
             'note' => new NoteBuilder(),
             'perception' => new PerceptionBuilder(),
+            'retention' => new RetentionBuilder(),
             default => throw new GreenterException("Tipo de documento no soportado"),
         };
     }

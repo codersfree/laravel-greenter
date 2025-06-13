@@ -16,7 +16,7 @@
     - [🏢 Datos de la Empresa Emisora](#-datos-de-la-empresa-emisora)
     - [🛠️ Cambiar a Producción](#️-cambiar-a-producción)
 - [🧰 Uso Básico](#-uso-básico)
-    - [✉️ Enviar una Factura Electrónica](#️-enviar-una-factura-electrónica)
+    - [✉️ Enviar una Factura Electrónica](#️-enviar-una-factura-electrónica-soap)
     - [🚚 Enviar una Guía de Remisión (API REST)](#-enviar-una-guía-de-remisión-api-rest)
     - [🔁 Emisión Dinámica para Múltiples Empresas](#-emisión-dinámica-para-múltiples-empresas)
 - [🎨 Generar Representación Impresa](#-generar-representación-impresa)
@@ -316,6 +316,38 @@ $response = Greenter::send('invoice', $data);
 
 $pdf = GreenterReport::generatePdf($response->getDocument());
 Storage::put("sunat/pdf/{$name}.pdf", $pdf);
+```
+
+### Modificar parametros y/o opciones de la representación impresa
+
+Modificar parametros
+
+```php
+$html = GreenterReport::setParams([
+    'system' => [
+        'logo' => env('GREENTER_COMPANY_LOGO', public_path('images/logo.png')),
+        'hash' => '',
+    ],
+    'user' => [
+        'header' => env('GREENTER_COMPANY_HEADER', 'Telf: <b>(01) 123456</b>'),
+        'extras' => [
+            ['name' => 'CONDICIÓN DE PAGO', 'value' => 'Contado'],
+            ['name' => 'VENDEDOR', 'value' => 'VENDEDOR PRINCIPAL'],
+        ],
+        'footer' => env('GREENTER_COMPANY_FOOTER', '<p>Nro Resolución: <b>123456789</b></p>'),
+    ]
+])->generateHtml($response->getDocument());
+```
+
+Modificar opciones
+
+```php
+$html = GreenterReport::setOptions([
+    'no-outline',
+    'viewport-size' => '1280x1024',
+    'page-width' => '21cm',
+    'page-height' => '29.7cm',
+])->generateHtml($response->getDocument());
 ```
 
 ### 🎨 Personalizar Plantillas

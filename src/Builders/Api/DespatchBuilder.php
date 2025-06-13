@@ -60,14 +60,16 @@ class DespatchBuilder implements DocumentBuilderInterface
                     : null
             )
             ->setAddDocs(
-                array_map(function ($doc) {
-                    return (new AdditionalDocBuilder())->build($doc);
-                }, $data['addDocs'] ?? [])
+                array_map(
+                    fn($doc) => (new AdditionalDocBuilder())->build($doc),
+                    $data['addDocs'] ?? []
+                )
             )
             ->setDetails(
-                array_map(function ($detail) {
-                    return (new DespatchDetailBuilder())->build($detail);
-                }, $data['details'] ?? [])
+                array_map(
+                    fn($detail) => (new DespatchDetailBuilder())->build($detail),
+                    $data['details'] ?? []
+                )
             );
     }
 }
