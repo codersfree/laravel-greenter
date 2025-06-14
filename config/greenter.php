@@ -18,7 +18,7 @@ return [
             'direccion' => env('GREENTER_COMPANY_ADDRESS', 'Av. Villa Nueva 221'),
         ],
 
-        'certificate' => file_get_contents(public_path('certs/certificate.pem')),
+        'certificate' => public_path('certs/certificate.pem'),
 
         'clave_sol' => [
             'user' => env('GREENTER_SOL_USER', 'MODDATOS'),

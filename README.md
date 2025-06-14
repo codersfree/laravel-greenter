@@ -32,8 +32,8 @@
 
 Este paquete requiere:
 
-* PHP >= 8.2
-* Laravel 11.x o 12.x
+* PHP >= 8.1
+* Laravel 11.x o superior
 * Extensiones PHP: `soap`, `openssl`
 * [wkhtmltopdf](https://wkhtmltopdf.org) (opcional, para generación de PDF)
 

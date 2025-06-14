@@ -16,7 +16,9 @@ class SeeBuilder implements SenderInterface
         $company = config('greenter.company');
 
         $see = new See();
-        $see->setCertificate($company['certificate']);
+        $see->setCertificate(
+            file_get_contents($company['certificate'])
+        );
         $see->setService($this->getEndpoint());
         $see->setClaveSOL(
             $company['ruc'],
