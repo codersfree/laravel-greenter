@@ -5,7 +5,7 @@ namespace CodersFree\LaravelGreenter\Services;
 use CodersFree\LaravelGreenter\Builders\Documents\DocumentBuilderFactory;
 use CodersFree\LaravelGreenter\Exceptions\GreenterException;
 use CodersFree\LaravelGreenter\Models\SunatResponse;
-use CodersFree\LaravelGreenter\Senders\SenderFactory;
+use CodersFree\LaravelGreenter\Senders\SenderBuilderFactory;
 use Greenter\Model\Response\SummaryResult;
 
 class SenderService
@@ -28,7 +28,7 @@ class SenderService
             $builder = DocumentBuilderFactory::create($type);
             $document = $builder->build($data);
             
-            $sender = (SenderFactory::create($type))->build();
+            $sender = (SenderBuilderFactory::create($type))->build();
 
             $result = $sender->send($document);
             

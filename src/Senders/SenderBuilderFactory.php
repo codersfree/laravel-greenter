@@ -2,7 +2,7 @@
 
 namespace CodersFree\LaravelGreenter\Senders;
 
-class SenderFactory
+class SenderBuilderFactory
 {
     /**
      * Create a sender instance based on the type.
@@ -10,7 +10,7 @@ class SenderFactory
      * @param string $type
      * @return mixed
      */
-    public static function create(string $type): SenderInterface
+    public static function create(string $type): SenderBuilderInterface
     {
         return match ($type) {
             // Para guías de remisión

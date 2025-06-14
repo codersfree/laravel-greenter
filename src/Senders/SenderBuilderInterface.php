@@ -2,7 +2,7 @@
 
 namespace CodersFree\LaravelGreenter\Senders;
 
-interface SenderInterface
+interface SenderBuilderInterface
 {
     public function build();
 }
