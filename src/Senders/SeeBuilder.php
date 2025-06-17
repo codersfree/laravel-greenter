@@ -3,11 +3,15 @@
 namespace CodersFree\LaravelGreenter\Senders;
 
 use CodersFree\LaravelGreenter\Contracts\SenderInterface;
+use CodersFree\LaravelGreenter\Exceptions\GreenterException;
 use Greenter\See;
 use Greenter\Ws\Services\SunatEndpoints;
 
 class SeeBuilder implements SenderInterface
 {
+    private const FE_TYPES = ['invoice', 'note', 'voided', 'summary'];
+    private const RET_TYPES = ['perception', 'retention'];
+
     public function __construct(
         protected string $type
     ) {}
@@ -15,10 +19,15 @@ class SeeBuilder implements SenderInterface
     public function build(): See
     {
         $company = config('greenter.company');
+        $certPath = config('greenter.company.certificate');
+
+        if (!file_exists($certPath)) {
+            throw new GreenterException("Certificate file not found: $certPath");
+        }
 
         $see = new See();
         $see->setCertificate(
-            file_get_contents($company['certificate'])
+            file_get_contents($certPath)
         );
         $see->setService($this->getEndpoint());
         $see->setClaveSOL(

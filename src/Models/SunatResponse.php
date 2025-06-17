@@ -9,10 +9,10 @@ use Greenter\Report\XmlUtils;
 class SunatResponse
 {
     public function __construct(
-        public DocumentInterface $document,
-        public ?string $cdrZip,
-        public CdrResponse $cdrResponse,
-        public string $xml,
+        private DocumentInterface $document,
+        private ?string $cdrZip,
+        private CdrResponse $cdrResponse,
+        private string $xml,
     ) {}
 
     public function getDocument(): DocumentInterface

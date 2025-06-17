@@ -3,6 +3,7 @@
 namespace CodersFree\LaravelGreenter\Senders;
 
 use CodersFree\LaravelGreenter\Contracts\SenderInterface;
+use CodersFree\LaravelGreenter\Exceptions\GreenterException;
 use Greenter\Api;
 
 class ApiBuilder implements SenderInterface
@@ -12,6 +13,11 @@ class ApiBuilder implements SenderInterface
         $mode = config('greenter.mode');
         $endpoints = config('greenter.endpoints.api');
         $company = config('greenter.company');
+        $certPath = config('greenter.company.certificate');
+
+        if (!file_exists($certPath)) {
+            throw new GreenterException("Certificate file not found: $certPath");
+        }
 
         $api = new Api(
             $mode === 'prod' ?
