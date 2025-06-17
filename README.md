@@ -109,17 +109,17 @@ Primero define los datos del comprobante:
 ```php
 $data = [
     "ublVersion" => "2.1",
-    "tipoOperacion" => "0101",
-    "tipoDoc" => "01", // 01 = Factura
+    "tipoOperacion" => "0101", // Catálogo 51
+    "tipoDoc" => "01", // Catálogo 01
     "serie" => "F001",
     "correlativo" => "1",
-    "fechaEmision" => "2025-06-12",
+    "fechaEmision" => now(),
     "formaPago" => [
         'tipo' => 'Contado',
     ],
-    "tipoMoneda" => "PEN",
+    "tipoMoneda" => "PEN", // Catálogo 02
     "client" => [
-        "tipoDoc" => "6",
+        "tipoDoc" => "6", // Catálogo 06
         "numDoc" => "20000000001",
         "rznSocial" => "EMPRESA X",
     ],
@@ -132,7 +132,7 @@ $data = [
     "details" => [
         [
             "codProducto" => "P001",
-            "unidad" => "NIU",
+            "unidad" => "NIU", // Catálogo 03
             "cantidad" => 2,
             "mtoValorUnitario" => 50.00,
             "descripcion" => "PRODUCTO 1",
@@ -147,7 +147,7 @@ $data = [
     ],
     "legends" => [
         [
-            "code" => "1000",
+            "code" => "1000", // Catálogo 15
             "value" => "SON CIENTO DIECIOCHO CON 00/100 SOLES",
         ],
     ],

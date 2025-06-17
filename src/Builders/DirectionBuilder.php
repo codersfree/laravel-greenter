@@ -8,7 +8,7 @@ class DirectionBuilder
 {
     public function build(array $data): Direction
     {
-        return (new Direction($data['ubigueo'], $data['direccion']))
+        return (new Direction($data['ubigueo'] ?? null, $data['direccion'] ?? null))
             ->setCodLocal($data['codLocal'] ?? null)
             ->setRuc($data['ruc'] ?? null);
     }
