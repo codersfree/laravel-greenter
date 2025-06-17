@@ -2,10 +2,11 @@
 
 namespace CodersFree\LaravelGreenter\Services;
 
-use CodersFree\LaravelGreenter\Builders\Documents\DocumentBuilderFactory;
 use CodersFree\LaravelGreenter\Exceptions\GreenterException;
+use CodersFree\LaravelGreenter\Factories\DocumentBuilderFactory;
+use CodersFree\LaravelGreenter\Factories\SenderFactory;
 use CodersFree\LaravelGreenter\Models\SunatResponse;
-use CodersFree\LaravelGreenter\Senders\SenderBuilderFactory;
+use CodersFree\LaravelGreenter\Senders\SeeBuilder;
 use Greenter\Model\Response\SummaryResult;
 
 class SenderService
@@ -28,7 +29,7 @@ class SenderService
             $builder = DocumentBuilderFactory::create($type);
             $document = $builder->build($data);
             
-            $sender = (SenderBuilderFactory::create($type))->build();
+            $sender = (SenderFactory::create($type))->build();
 
             $result = $sender->send($document);
             
@@ -71,8 +72,14 @@ class SenderService
         }
     }
 
-    public function getSender(string $type)
+    public function getXmlSigned(string $type, array $data)
     {
+        $builder = DocumentBuilderFactory::create($type);
+        $document = $builder->build($data);
+        
+        $sender = (new SeeBuilder($type))->build();
+        $xml = $sender->getXmlSigned($document);
 
+        return $xml;
     }
 }

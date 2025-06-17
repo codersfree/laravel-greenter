@@ -2,10 +2,11 @@
 
 namespace CodersFree\LaravelGreenter\Senders;
 
+use CodersFree\LaravelGreenter\Contracts\SenderInterface;
 use Greenter\See;
 use Greenter\Ws\Services\SunatEndpoints;
 
-class SeeBuilder implements SenderBuilderInterface
+class SeeBuilder implements SenderInterface
 {
     public function __construct(
         protected string $type
