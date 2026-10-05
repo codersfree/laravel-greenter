@@ -40,8 +40,8 @@
 
 Este paquete requiere:
 
-* PHP >= 8.1
-* Laravel 11.x o superior
+* PHP >= 8.1 (Laravel 13 requiere PHP >= 8.3)
+* Laravel 10.x, 11.x, 12.x o 13.x
 * Extensiones PHP: `soap`, `openssl`, `dom`, `xml`
 * [wkhtmltopdf](https://wkhtmltopdf.org) (opcional, para generación de PDF)
 
